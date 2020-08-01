@@ -1,34 +1,55 @@
 import re
 import shutil
 
-# f = open('potential-contacts.txt', 'r')
-# message = f.read()
-# print(message)
 
-class PhoneInfo:
-  def __init__(self):
-    self.input = ''
-    self.output = ''
-    self.phone_numbers = []
-    self.emails = []
-    
-  
-  def open(self, file_path):
-    with open(file_path, 'r') as file:
-      self.input = file.read()
-    return self.input
+content = ''
 
-  def get_phone_numbers(self):
-    self.phone_numbers = []
+def out_string():
+  with open('potential-contacts.txt', 'r') as f:
+    return f.read()
   
-    pattern = r'\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4}'
-    phone_numbers = re.findall(pattern, self.input)
-  
-    for number in phone_numbers:
-        formatted_number = [c for c in number if c.isnumber()]
-        formatted_number.insert(3, '-')
-        formatted_number.insert(7, '-')
-        self.phone_numbers.append(''.join(formatted_number))
+phone = r'(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})'
+
+email = r'\S+@\S+'
+
+os = out_string()
+
+ph = re.findall(phone, os)
+
+em = re.findall(email, os)
+
+# print(phone numbers)
+# print(email)
+
+def duplicate_phone():
+  new_list = []
+  for i in ph: 
+    if i not in new_list: 
+      new_list.append(i)
       
-    return self.phone_numbers
-    print(self.phone_numbers) 
+  print(new_list)
+  print(len(new_list))
+      
+  return new_list 
+  
+  
+
+def duplicate_email():
+  new_list = []
+  for i in em: 
+    if i not in new_list: 
+      new_list.append(i)
+  
+
+  print(new_list)
+  print(len(new_list))
+  
+  return new_list 
+      
+      
+if __name__ == "__main__":
+  
+  duplicate_phone()
+  duplicate_email()
+  
+  
