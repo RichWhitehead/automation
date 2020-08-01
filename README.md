@@ -1,4 +1,4 @@
-# Ceasar cipher implementation
+# Automation
 
 # Author: Richard Whitehead
 
